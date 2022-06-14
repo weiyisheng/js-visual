@@ -21,9 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src",
-    "tests/App.test.tsx",
-    "tests/setupTests.ts"
+    "src"
   ],
   "extends": "./tsconfig.paths.json"
 }

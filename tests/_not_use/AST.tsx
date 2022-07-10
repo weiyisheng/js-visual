@@ -20,3 +20,9 @@ export default function ASTView() {
 		</div>
 	);
 }
+
+const a = 'http://xxxsss';
+const b = 300;
+const c = fetch(a, b);
+
+const s = function (params) {};

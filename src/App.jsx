@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Textual from '@/views/Textual';
 import Graph from '@/views/Graph';
 
+import manager from '@/system/manager';
+
 function App() {
+	useEffect(() => {
+		manager.initNodes();
+	}, []);
+
 	return (
 		<div className="h-screen">
 			<div className=" h-3/4 bg-slate-600">

@@ -7,16 +7,17 @@ import { javascript } from '@codemirror/lang-javascript';
 
 import useStore from '@/store';
 
+import manager from '@/system/manager';
+
 export default function Textual() {
 	const source = useStore((state) => state.source);
-	const setSource = useStore((state) => state.setSource);
 
 	return (
 		<CodeMirror
 			value={source}
 			extensions={[javascript({ jsx: true })]}
 			onChange={(value, viewUpdate) => {
-				setSource(value);
+				manager.setSource(value);
 			}}
 		/>
 	);

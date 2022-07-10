@@ -1,39 +1,32 @@
 import React, { useEffect } from 'react';
 
+import ReactFlow, { Background } from 'react-flow-renderer';
 import useStore from '@/store';
 
-import Node from './components/Node';
+import Node from './Node';
 
-import keyEvent from '@/utils/keyEvent';
+import manager from '@/system/manager';
+
+const nodeTypes = {
+	node: Node,
+};
 
 function Graph() {
-	const nodes = useStore((state) => state.nodes);
-	const error = useStore((state) => state.error);
-	const ast = useStore((state) => state.ast);
-
-	const addNode = useStore((state) => state.addNode);
-	useEffect(
-		() => {
-			keyEvent.key('tab', (event, handler) => {
-				addNode();
-			});
-		},
-		() => {
-			keyEvent.unbind('tab');
-		}
-	);
+	const { nodes, edges } = useStore();
 
 	return (
-		<div className=" relative h-full">
-			{nodes.map((node) => (
-				<Node node={node} key={node._id} ast={ast} />
-			))}
-			{error ? (
-				<div className=" absolute bottom-0 left-0 w-full mb-2 text-red-500">
-					{error.toString()}
-				</div>
-			) : null}
-		</div>
+		<ReactFlow
+			nodeTypes={nodeTypes}
+			nodes={nodes}
+			edges={edges}
+			onNodesChange={manager.onNodesChange}
+			onEdgesChange={manager.onEdgesChange}
+			onConnect={manager.onConnect}
+			fitView
+			attributionPosition="top-right"
+		>
+			<Background color="#aaa" gap={16} />
+		</ReactFlow>
 	);
 }
 

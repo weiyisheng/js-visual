@@ -1,4 +1,4 @@
-# ablout this project
+# about this project
 
   visual programing for javascript
 
